@@ -5,15 +5,15 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>ID</th>
       <th>E-mail</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
   {{#each model as |invitation|}}
     <tr>
-      <th>{{invitation.id}}</th>
-      <td>{{invitation.email}}</td>
+      <th>{{invitation.email}}</th>
+      <td><button class="btn btn-danger btn-xs" {{action 'deleteInvitation' invitation}}>Delete</button></td>
     </tr>
   {{/each}}
   </tbody>

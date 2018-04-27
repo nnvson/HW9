@@ -1,17 +1,17 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
+
   model() {
-   return this.store.findAll('library');
- },
+    return this.store.findAll('contact');
+  },
 
- actions: {
-
-    deleteLibrary(library) {
+  actions: {
+    deleteContact(contact) {
       let confirmation = confirm('Are you sure?');
 
       if (confirmation) {
-        library.destroyRecord();
+        contact.destroyRecord();
       }
     }
   }

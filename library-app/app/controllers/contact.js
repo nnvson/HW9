@@ -11,13 +11,20 @@ export default Controller.extend({
   isLongEnough: gte("message.length", 5),
   isBothValid: and('isValid', 'isLongEnough'),
   isDisabled: not('isBothValid'),
-  reminderMessage: 'Please provide your contact here.',
+  reminderMessage: 'Please provide your email and leave a message here',
 
   actions: {
 
     confirmContact() {
       alert(`We got your email: ${this.get('emailAddress')} and your message: ${this.get('message')}`);
-      this.set('responseMessage', `Thank you for providing your contact. We got your message and we’ll get in touch soon`);
+
+      // save the contact and message into the db
+      const email = this.get('emailAddress');
+      const message = this.get('message');
+      const newContact = this.store.createRecord('contact', { email, message });
+      newContact.save();
+
+      this.set('responseMessage', `Thank you for your contact. We got your message and we’ll get in touch soon`);
       this.set('emailAddress', '');
       this.set('message', '');
     }
